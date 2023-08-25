@@ -1,0 +1,20 @@
+---
+title: something
+author: me
+---
+
+```{r}
+library(ggplot2)
+library(dplyr)
+```
+
+```{r}
+5 + 5
+```
+
+```{r}
+cars |>
+  ggplot() +
+  aes(speed, dist) +
+  geom_point()
+```
