@@ -21,8 +21,14 @@ function get_file_content()  -- arguments: julia, r, python ...
 end
 
 -- Comment out these when sourcing
-vim.cmd("command GetFileContent lua get_file_content()")
-vim.keymap.set("n", "<leader>gfc", "<Cmd>GetFileContent<Cr>")
+--vim.cmd("command GetFileContent lua get_file_content()")
+--vim.keymap.set("n", "<leader>gfc", "<Cmd>GetFileContent<Cr>")
+
+function select_channel()
+	-- the output here is https://neovim.io/doc/user/api.html#nvim_get_chan_info()
+	local chans = vim.api.nvim_list_chans()
+end
+
 
 
 
@@ -34,3 +40,6 @@ function send_file_content()
   vim.api.nvim_chan_send(channel, code)
 end
 -- this works https://neovim.discourse.group/t/how-to-new-a-terminal-and-send-to-run-command-with-lua/4218
+
+
+
