@@ -1,5 +1,4 @@
-
--- Get all code content for R file
+-- Get all code content from qmd file
 function get_file_content()  -- arguments: julia, r, python ...
 	local path = vim.api.nvim_buf_get_name(0) -- get path of current buffer
 	local file = io.open(path, r) -- load current file
@@ -20,24 +19,38 @@ function get_file_content()  -- arguments: julia, r, python ...
 	return code
 end
 
--- Comment out these when sourcing
---vim.cmd("command GetFileContent lua get_file_content()")
---vim.keymap.set("n", "<leader>gfc", "<Cmd>GetFileContent<Cr>")
-
-function select_channel()
-	-- the output here is https://neovim.io/doc/user/api.html#nvim_get_chan_info()
-	local channels = vim.api.nvim_list_chans()
-	for _, channel in ipairs(channels) do
-		if channel["buffer"] ~= nil then
-			print("Buffer ", channel["buffer"], " have channel id ", channel["id"]) 
-		end
-	end
-end
-
--- this sends stuff to terminal!
+-- Send stuff to channel
 function send_file_content()
   local code = get_file_content()
-  --local text = "print('hello')\rprint('hi')\r" -- this should be print file stuff
-  local channel = 10 -- this should ideally be a global variable applicable for all re-usage
+  local channel = pick_channel() -- this must be evaluated before next line or fail
   vim.api.nvim_chan_send(channel, code)
+end
+
+-- Print available channels
+function get_channels()
+	-- the output here is https://neovim.io/doc/user/api.html#nvim_get_chan_info()
+	local channels = vim.api.nvim_list_chans()
+	local channel_table = {}
+	i = 0
+	for _, channel in ipairs(channels) do
+		if channel["buffer"] ~= nil then
+			i = i + 1
+			channel_table[i] = channel["id"]
+		end
+	end
+	return(channel_table)
+end
+
+
+-- Pick channel
+function pick_channel()
+     local stuff = get_channels()
+     vim.ui.select(stuff, {
+         prompt = 'Select channel',
+         format_item = function(channel)
+             return "Channel: " .. channel
+         end,
+     }, function(chosen_channel)
+	     return(chosen_channel) -- set some global variable instead
+     end)
 end
