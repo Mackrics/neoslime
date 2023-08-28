@@ -26,20 +26,18 @@ end
 
 function select_channel()
 	-- the output here is https://neovim.io/doc/user/api.html#nvim_get_chan_info()
-	local chans = vim.api.nvim_list_chans()
+	local channels = vim.api.nvim_list_chans()
+	for _, channel in ipairs(channels) do
+		if channel["buffer"] ~= nil then
+			print("Buffer ", channel["buffer"], " have channel id ", channel["id"]) 
+		end
+	end
 end
-
-
-
 
 -- this sends stuff to terminal!
 function send_file_content()
   local code = get_file_content()
   --local text = "print('hello')\rprint('hi')\r" -- this should be print file stuff
-  local channel = 88 -- this should ideally be a global variable applicable for all re-usage
+  local channel = 10 -- this should ideally be a global variable applicable for all re-usage
   vim.api.nvim_chan_send(channel, code)
 end
--- this works https://neovim.discourse.group/t/how-to-new-a-terminal-and-send-to-run-command-with-lua/4218
-
-
-
