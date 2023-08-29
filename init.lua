@@ -19,13 +19,6 @@ function get_file_content()  -- arguments: julia, r, python ...
 	return code
 end
 
--- Send stuff to channel
-function send_file_content()
-  local code = get_file_content()
-  local channel = pick_channel() -- this must be evaluated before next line or fail
-  vim.api.nvim_chan_send(channel, code)
-end
-
 -- Print available channels
 function get_channels()
 	-- the output here is https://neovim.io/doc/user/api.html#nvim_get_chan_info()
@@ -43,14 +36,18 @@ end
 
 
 -- Pick channel
-function pick_channel()
-     local stuff = get_channels()
-     vim.ui.select(stuff, {
-         prompt = 'Select channel',
-         format_item = function(channel)
-             return "Channel: " .. channel
-         end,
-     }, function(chosen_channel)
-	     return(chosen_channel) -- set some global variable instead
-     end)
+function send_content()
+	local code = get_file_content()
+	local all_channels = get_channels()
+	-- if channel is null, return error
+	-- if code is null, return error
+	-- check if global variable chosen_channel already exist
+     	vim.ui.select(all_channels, {
+     	    prompt = 'Select channel',
+     	    format_item = function(channel)
+     	        return "Channel: " .. channel
+     	    end,
+     	}, function(chosen_channel)
+     	   vim.api.nvim_chan_send(chosen_channel, code) -- send code to chosen channel
+     	end)
 end
