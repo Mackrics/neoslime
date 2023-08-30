@@ -1,9 +1,9 @@
 -- Get all code content from qmd file
-function get_file_content()  -- arguments: julia, r, python ...
+function get_file_content(delim_start, delim_end)  -- arguments: julia, r, python ...
 	local path = vim.api.nvim_buf_get_name(0) -- get path of current buffer
 	local file = io.open(path, r) -- load current file
 	local file_content = file:read("*a") -- get file content
-	local matches = string.gmatch(file_content, "```{r}(.-)```") -- make flexible in language or
+	local matches = string.gmatch(file_content, delim_start .. "(.-)" .. delim_end) -- make flexible in language or
 	local i = 0
 	local code_table = {}
 	for match in matches do
@@ -31,7 +31,7 @@ end
 
 -- Pick channel
 function send_content()
-	local code = get_file_content()
+	local code = get_file_content("```{r}", "```")
 	local all_channels = get_channels()
 	-- if channel is null, return error
 	-- if code is null, return error
