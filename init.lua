@@ -59,7 +59,8 @@ function get_visual_selection()
   else
     lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3])
   end
-  return table.concat(lines, "\n\r")
+  code_table = table.concat(lines, "\r")
+  return code_table
 end
 
 function send_visual_selection()
