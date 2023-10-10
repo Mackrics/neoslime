@@ -1,0 +1,1 @@
+# Slime for neovim
