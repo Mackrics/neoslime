@@ -1,11 +1,11 @@
 --:h lua-guide-commands-create
 -- https://github.com/Shatur/neovim-session-manager/blob/68dde355a4304d83b40cf073f53915604bdd8e70/plugin/session_manager.lua
 
-local slime = require('send-stuff')
+require('send-stuff')
 
 vim.api.nvim_create_user_command(
   'SlimeEdit', 
-  slime.edit_channel(),
+  edit_channel(),
   {}
 )
 
