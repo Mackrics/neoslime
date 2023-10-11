@@ -4,14 +4,38 @@
 local slime = require('send-stuff')
 
 vim.api.nvim_create_user_command(
-  'SlimeEdit', 
-  'lua edit_channel()',
+  'NeoSlimeSendLine', 
+  'lua send_line()',
   {}
 )
 
 vim.api.nvim_create_user_command(
-  'SlimeTest', 
-  'lua print "hello!"',
+  'NeoSlimeSendBlock', 
+  'lua send_block()',
+  {}
+)
+
+vim.api.nvim_create_user_command(
+  'NeoSlimeSendCell', 
+  'lua send_cell()',
+  {}
+)
+
+vim.api.nvim_create_user_command(
+  'NeoSlimeSendVisualSelection', 
+  'lua send_visual_selection()',
+  {}
+)
+
+vim.api.nvim_create_user_command(
+  'NeoSlimeSendQuarto', 
+  'lua send_quarto()',
+  {}
+)
+
+vim.api.nvim_create_user_command(
+  'NeoSlimeEdit', 
+  'lua edit_channel()',
   {}
 )
 
