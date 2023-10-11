@@ -5,7 +5,7 @@ local slime = require('send-stuff')
 
 vim.api.nvim_create_user_command(
   'SlimeEdit', 
-  'lua slime.edit_channel()',
+  slime.edit_channel(),
   {}
 )
 
