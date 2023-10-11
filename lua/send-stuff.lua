@@ -97,8 +97,10 @@ function send_block()
 	vim.api.nvim_input('<ESC>') -- de select block
 end
 
+vim.g.cell_delimitor = "```"
+
 function send_cell()
-  local delim = "```"
+  local delim = vim.g.cell_delimitor
   vim.api.nvim_input('/'.. delim..'<CR>NjVnk') 
   local code = get_visual_selection()
   send_visual_selection(code)
