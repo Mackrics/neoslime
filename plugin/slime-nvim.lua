@@ -24,7 +24,7 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
   'NeoSlimeSendVisualSelection', 
   'lua send_visual_selection()',
-  {}
+  {range = 0}
 )
 
 vim.api.nvim_create_user_command(
@@ -38,4 +38,3 @@ vim.api.nvim_create_user_command(
   'lua edit_channel()',
   {}
 )
-
