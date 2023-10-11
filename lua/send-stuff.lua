@@ -104,11 +104,3 @@ function send_cell()
   send_visual_selection(code)
   vim.api.nvim_input(":nohlsearch<CR>:nohlsearch<CR>")
 end
-
---:h lua-guide-commands-create
-vim.api.nvim_create_user_command(
-  'SlimeEdit', 
-  'lua edit_channel()',
-  {}
-)
-
