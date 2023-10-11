@@ -25,11 +25,23 @@ function edit_channel()
   end)
 end
 
+function edit_channel_and_send(code)
+  local all_channels = get_channels()
+  vim.ui.select(all_channels, {
+      prompt = 'Select channel',
+      format_item = function(channel)
+          return "Channel: " .. channel
+      end,
+  }, function(chosen_channel)
+     vim.g.chosen_channel = chosen_channel
+     vim.api.nvim_chan_send(vim.g.chosen_channel, code) -- send code to chosen channel
+  end)
+end
+
 -- send content to channel, if no channel, edit channel
 function send_content(code)
   if vim.g.chosen_channel == nil then
-    edit_channel()
-    vim.api.nvim_chan_send(vim.g.chosen_channel, code) -- send code to chosen channel
+    edit_channel_and_send(code)
   else
     vim.api.nvim_chan_send(vim.g.chosen_channel, code) -- send code to chosen channel
   end
