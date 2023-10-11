@@ -3,6 +3,10 @@
 
 local slime = require('send-stuff')
 
+vim.g.cell_delimitor = "```"
+
+vim.g.chosen_channel = nil
+
 vim.api.nvim_create_user_command(
   'NeoSlimeSendLine', 
   'lua send_line()',

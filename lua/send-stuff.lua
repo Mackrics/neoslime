@@ -29,8 +29,10 @@ end
 function send_content(code)
   if vim.g.chosen_channel == nil then
     edit_channel()
+    vim.api.nvim_chan_send(vim.g.chosen_channel, code) -- send code to chosen channel
+  else
+    vim.api.nvim_chan_send(vim.g.chosen_channel, code) -- send code to chosen channel
   end
-  vim.api.nvim_chan_send(vim.g.chosen_channel, code) -- send code to chosen channel
 end
 
 -- Get all code content from qmd file
@@ -96,8 +98,6 @@ function send_block()
 	send_content(code)
 	vim.api.nvim_input('<ESC>') -- de select block
 end
-
-vim.g.cell_delimitor = "```"
 
 function send_cell()
   local delim = vim.g.cell_delimitor
