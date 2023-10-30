@@ -76,9 +76,15 @@ function get_visual_selection()
   return(code)
 end
 
+
+--50+5
+
 -- Send visual selection
 function send_visual_selection()
-	vim.cmd('norm!')
-	local code = get_visual_selection()
-	send_content(code)
+  if vim.g.chosen_channel  ~= nil then
+    local code = get_visual_selection()
+    send_content(code)
+  else
+    edit_channel()
+  end
 end
