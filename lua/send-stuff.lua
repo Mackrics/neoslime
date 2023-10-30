@@ -79,5 +79,6 @@ end
 -- Send visual selection
 function send_visual_selection()
 	local code = get_visual_selection()
+	vim.cmd('<esc>')
 	send_content(code)
 end
