@@ -81,6 +81,6 @@ end
 
 -- Send visual selection
 function send_visual_selection()
-    send_content(code)
-    edit_channel()
+  local content = get_visual_selection()
+  send_content(code)
 end
