@@ -47,23 +47,6 @@ function send_content(code)
   end
 end
 
--- Get all code content from qmd file
-function get_file_content(delim_start, delim_end)  -- arguments: julia, r, python ...
-	local path = vim.api.nvim_buf_get_name(0) -- get path of current buffer
-	local file = io.open(path, r) -- load current file
-	local file_content = file:read("*a") -- get file content
-	local matches = string.gmatch(file_content, delim_start .. "(.-)" .. delim_end)
-	local i = 0
-	local code_table = {}
-	for match in matches do
-		i = i + 1
-		code_table[i] = match
-	end
-	code = table.concat(code_table, "\r")
-	return code
-end
-
-
 -- send code from current paragraph
 function send_line()
 	local line = vim.api.nvim_get_current_line() .. "\r"
@@ -71,13 +54,7 @@ function send_line()
 	send_content(line)
 end
 
--- send entire quarto file
-function send_quarto()
-	local code = get_file_content("```{r}", "```")
-	send_content(code)
-end
-
--- need to understand this
+-- Get visual selection
 function get_visual_selection()
   local s_start = vim.fn.getpos("'<")
   local s_end = vim.fn.getpos("'>")
@@ -99,22 +76,8 @@ function get_visual_selection()
   return(code)
 end
 
+-- Send visual selection
 function send_visual_selection()
 	local code = get_visual_selection()
 	send_content(code)
-end
-
-function send_block()
-	vim.cmd('norm! vip') -- visually select block
-	local code = get_visual_selection()
-	send_content(code)
-	vim.api.nvim_input('<ESC>') -- de select block
-end
-
-function send_cell()
-  local delim = vim.g.cell_delimitor
-  vim.api.nvim_input('/'.. delim..'<CR>NjVnk') 
-  local code = get_visual_selection()
-  send_visual_selection(code)
-  vim.api.nvim_input(":nohlsearch<CR>:nohlsearch<CR>")
 end
