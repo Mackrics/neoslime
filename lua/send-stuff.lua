@@ -81,10 +81,6 @@ end
 
 -- Send visual selection
 function send_visual_selection()
-  if vim.g.chosen_channel  ~= nil then
-    local code = get_visual_selection()
     send_content(code)
-  else
     edit_channel()
-  end
 end
