@@ -49,9 +49,9 @@ end
 
 -- send code from current paragraph
 function send_line()
-	local line = vim.api.nvim_get_current_line() .. "\r"
-	vim.cmd('norm! j')
-	send_content(line)
+  local line = vim.api.nvim_get_current_line() .. "\r"
+  vim.cmd('norm! j')
+  send_content(line)
 end
 
 -- Get visual selection
@@ -75,9 +75,6 @@ function get_visual_selection()
   code = table.concat(code_table) -- convert to string
   return(code)
 end
-
-
---50+5
 
 -- Send visual selection
 function send_visual_selection()
