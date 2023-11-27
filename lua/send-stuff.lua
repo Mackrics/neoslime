@@ -1,15 +1,15 @@
 -- Print available channels
 function get_channels()
-	local channels = vim.api.nvim_list_chans()
-	local channel_table = {}
-	i = 0
-	for _, channel in ipairs(channels) do
-		if channel["buffer"] ~= nil then
-			i = i + 1
-			channel_table[i] = channel["id"]
-		end
-	end
-	return(channel_table)
+  local channels = vim.api.nvim_list_chans()
+  local channel_table = {}
+  i = 0
+  for _, channel in ipairs(channels) do
+    if channel["buffer"] ~= nil then
+      i = i + 1
+      channel_table[i] = channel["id"]
+    end
+  end
+  return(channel_table)
 end
 
 -- Edit channel receving content
