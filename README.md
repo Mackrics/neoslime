@@ -26,14 +26,24 @@ Some key features of neoslime is:
 - `NeoSlimeSendVisualSelection`
   + Send visual selection to channel
 
-# Keybindings
+# Configuration and keybindings
 
-Add this to `init.lua`
+Neoslime currently has one configuration option: activating and de-activating
+default keybindings.
 
 ```lua
--- Send line with ctrl + enter when in normal or insert mode (Rstudio style)
-vim.keymap.set({"n", "i"}, "<C-cr>", "<Cmd>NeoSlimeSendLine<Cr>")
--- Send visual selection with ctrl + enter when in visual mode (Rstudio style)
-vim.keymap.set("v", "<C-cr>",  ":'<,'> NeoSlimeSendVisualSelection<Cr>")
+-- use the default keybindings
+vim.g.use_default_neoslime_keybinds = true
 ``` 
+
+## Default keybindings
+
+The default keybindings are currently:
+
+- `ctrl + h` send current line when in interactive mode
+- `ctrl + h` send visual selection when in visual mode
+- `leader + s` send content cell content, current delimitors are `\\`\\`\\``
+
+
+
 
