@@ -12,6 +12,22 @@ function get_channels()
   return(channel_table)
 end
 
+-- check if chosen channel is valid
+function check_if_channel_is_valid()
+  local valid_channels = get_channels()
+  local chosen_channel = vim.g.chosen_channel
+  i = 0
+  is_valid = false
+  for _ in ipairs(valid_channels) do
+    i = i + 1
+    local is_valid = valid_channels[i] == chosen_channel
+    if is_valid == true then
+      return(is_valid)
+    end
+  end
+  return(false)
+end
+
 -- Edit channel receving content
 function edit_channel()
   local all_channels = get_channels()
