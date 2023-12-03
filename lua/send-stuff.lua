@@ -43,6 +43,10 @@ end
 
 function edit_channel_and_send(code)
   local all_channels = get_channels()
+  if all_channels[1] == nil then
+    error("No channels available, open a channel by typing :terminal")
+    return
+  end
   vim.ui.select(all_channels, {
       prompt = 'Select channel',
       format_item = function(channel)
