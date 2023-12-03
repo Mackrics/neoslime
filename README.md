@@ -42,7 +42,7 @@ The default keybindings are currently:
 
 - `ctrl + h` send current line when in interactive mode
 - `ctrl + h` send visual selection when in visual mode
-- `leader + s` send content cell content, current delimitors are `\\`\\`\\``
+- `leader + s` send content cell content, current delimitors are `\`\`\``
 
 
 
