@@ -37,7 +37,9 @@ function edit_channel()
           return "Channel: " .. channel
       end,
   }, function(chosen_channel)
+    if chosen_channel ~= nil then
      vim.g.chosen_channel = chosen_channel
+    end
   end)
 end
 
