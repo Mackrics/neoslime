@@ -12,6 +12,13 @@ function get_channels()
   return(channel_table)
 end
 
+function get_channel_name(channel)
+  local channel_info = vim.api.nvim_get_chan_info(channel)
+  local buffer_channel = channel_info["buffer"]
+  local channel_name = vim.api.nvim_buf_get_name(buffer_channel)
+  return(channel_name)
+end
+
 -- check if chosen channel is valid
 function check_if_channel_is_valid()
   local valid_channels = get_channels()
@@ -34,7 +41,7 @@ function edit_channel()
   vim.ui.select(all_channels, {
       prompt = 'Select channel',
       format_item = function(channel)
-          return "Channel: " .. channel
+        return channel .. ":\t" .. get_channel_name(channel)
       end,
   }, function(chosen_channel)
     if chosen_channel ~= nil then
@@ -52,7 +59,7 @@ function edit_channel_and_send(code)
   vim.ui.select(all_channels, {
       prompt = 'Select channel',
       format_item = function(channel)
-          return "Channel: " .. channel
+        return channel .. ":\t" .. get_channel_name(channel)
       end,
   }, function(chosen_channel)
      vim.g.chosen_channel = chosen_channel
