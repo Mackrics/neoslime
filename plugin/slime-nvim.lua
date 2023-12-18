@@ -1,8 +1,8 @@
 -- source scripts to be loaded
-local send = require('send-stuff')
-local edit = require('edit_channel')
-local visual = require('get_visual_selection')
-local get = require('get_channels')
+require('send-stuff')
+require('edit-channel')
+require('get-visual-selection')
+require('get-channels')
 
 -- Default channel is nil
 vim.g.chosen_channel = nil
