@@ -1,5 +1,8 @@
 -- source scripts to be loaded
-local slime = require('send-stuff')
+require('send-stuff')
+require('edit_channel')
+require('get_visual_selection')
+require('get_channels')
 
 -- Default channel is nil
 vim.g.chosen_channel = nil
