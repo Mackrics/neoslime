@@ -6,6 +6,7 @@ require('get-channels')
 
 -- Default channel is nil
 vim.g.chosen_channel = nil
+vim.g.per_buffer_channel = true
 
 -- use default keybindings by default
 if vim.g.use_default_neoslime_keybinds == nil then
