@@ -10,19 +10,19 @@ function edit_channel_and_send(code)
         return channel .. ":\t" .. get_channel_name(channel)
       end,
   }, function(chosen_channel)
-     vim.g.chosen_channel = chosen_channel
-     vim.api.nvim_chan_send(vim.g.chosen_channel, code) -- send code to chosen channel
+     set_chosen_channel(chosen_channel)
+     vim.api.nvim_chan_send(get_chosen_channel(), code) -- send code to chosen channel
   end)
 end
 
 -- send content to channel, if no channel, edit channel
 function send_content(code)
-  if vim.g.chosen_channel == nil then
+  if get_chosen_channel() == nil then
     edit_channel_and_send(code)
   else
     local channel_is_valid = check_if_channel_is_valid()
     if channel_is_valid == true then -- send to chosen channel
-      vim.api.nvim_chan_send(vim.g.chosen_channel, code) -- send code to chosen channel
+      vim.api.nvim_chan_send(get_chosen_channel(), code) -- send code to chosen channel
     else -- if channel is not valid, select new channel and send
       edit_channel_and_send(code)
     end

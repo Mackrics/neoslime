@@ -14,3 +14,10 @@ function get_chosen_channel()
   end
 end
 
+function toggle_per_buffer()
+  if vim.g.per_buffer_channel == true then
+     vim.g.per_buffer_channel = false
+  elseif vim.g.per_buffer_channel == false then
+     vim.g.per_buffer_channel = true
+  end
+end

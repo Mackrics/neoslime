@@ -3,10 +3,11 @@ require('send-stuff')
 require('edit-channel')
 require('get-visual-selection')
 require('get-channels')
+require('chosen-channel')
 
 -- Default channel is nil
 vim.g.chosen_channel = nil
-vim.g.per_buffer_channel = true
+vim.g.per_buffer_channel = false
 
 -- use default keybindings by default
 if vim.g.use_default_neoslime_keybinds == nil then
@@ -40,6 +41,12 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
   'NeoSlimePrint', 
   'lua print_channel()',
+  {}
+)
+
+vim.api.nvim_create_user_command(
+  'NeoSlimeToggle', 
+  'lua toggle_per_buffer()',
   {}
 )
 
