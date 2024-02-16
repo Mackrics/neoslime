@@ -1,4 +1,6 @@
 -- Edit channel receiving content
+local config = require('neoslime.config')
+
 function edit_channel()
   local all_channels = get_channels()
   vim.ui.select(all_channels, {
@@ -8,7 +10,7 @@ function edit_channel()
       end,
   }, function(chosen_channel)
     if chosen_channel ~= nil then
-     vim.g.chosen_channel = chosen_channel
+     config.chosen_channel = chosen_channel
     end
   end)
 end

@@ -1,3 +1,5 @@
+local config = require('neoslime.config')
+
 -- Print available channels
 function get_channels()
   local channels = vim.api.nvim_list_chans()
@@ -22,7 +24,7 @@ end
 -- check if chosen channel is valid
 function check_if_channel_is_valid()
   local valid_channels = get_channels()
-  local chosen_channel = vim.g.chosen_channel
+  local chosen_channel = config.chosen_channel
   i = 0
   is_valid = false
   for _ in ipairs(valid_channels) do

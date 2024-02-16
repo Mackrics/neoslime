@@ -1,9 +1,11 @@
+local config = require('neoslime.config')
 function print_channel()
-  if vim.g.chosen_channel == nil then
+  local channel = config.chosen_channel
+  if channel == nil then
     print("No channel chosen")
     return(nil)
   end
-  local channel_name = vim.g.chosen_channel .. ": " .. get_channel_name(vim.g.chosen_channel)
+  local channel_name = channel  .. ": " .. get_channel_name(channel)
   print(channel_name)
   return(nil)
 end
