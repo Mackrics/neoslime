@@ -1,0 +1,5 @@
+require('send-stuff')
+require('edit-channel')
+require('get-visual-selection')
+require('get-channels')
+require('chosen-channel')
