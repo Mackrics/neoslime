@@ -38,9 +38,11 @@ vim.api.nvim_create_user_command(
   {}
 )
 
+
 -- Default keybindings
 if config.use_default_neoslime_keybinds == true then
-  vim.keymap.set("n", "<leader>s",  "?^```<Cr>jV/^```<Cr>k:'<,'> NeoSlimeSendVisualSelection<Cr>n")
+  keymap = "?^" .. config.cell_delim .. "<Cr>jV/^" .. config.cell_delim .. "<Cr>k:'<,'> NeoSlimeSendVisualSelection<Cr>n"
+  vim.keymap.set("n", "<leader>s",  keymap)
   vim.keymap.set({"n", "i"}, "<C-h>", "<Cmd>NeoSlimeSendLine<Cr>")
   vim.keymap.set("v", "<C-h>",  ":'<,'> NeoSlimeSendVisualSelection<Cr>")
   vim.keymap.set({"n", "v"}, "<leader>e", "<Cmd>NeoSlimeEdit<Cr>")
