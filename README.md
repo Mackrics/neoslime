@@ -28,12 +28,12 @@ Some key features of neoslime is:
 
 # Configuration and keybindings
 
-Neoslime currently has one configuration option: activating and de-activating
-default keybindings.
-
 ```lua
--- use the default keybindings
-vim.g.use_default_neoslime_keybinds = true
+require('neoslime').setup({
+  chosen_channel     = nil, -- The chosen channel to send code to
+  per_buffer_channel = false, -- true if you want to set a channel for each buffer
+  use_default_neoslime_keybinds = true -- true if you want to use the default keybinds
+})
 ``` 
 
 ## Default keybindings

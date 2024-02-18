@@ -2,9 +2,9 @@
 local config = {}
 
 config.defaults = {
-  chosen_channel     = nil,
-  per_buffer_channel = false,
-  use_default_neoslime_keybinds = true
+  chosen_channel     = nil, -- The chosen channel to send code to
+  per_buffer_channel = false, -- true if you want to set a channel for each buffer
+  use_default_neoslime_keybinds = true -- true if you want to use the default keybinds
 }
 
 setmetatable(config, { __index = config.defaults })
