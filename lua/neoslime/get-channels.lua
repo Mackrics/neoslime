@@ -7,8 +7,12 @@ function get_channels()
   i = 0
   for _, channel in ipairs(channels) do
     if channel["buffer"] ~= nil then
-      i = i + 1
-      channel_table[i] = channel["id"]
+      local channel_name = get_channel_name(channel["id"])
+      local filtered_channel = string.find(channel_name, config.filter_channel) == nil 
+      if filtered_channel then
+        i = i + 1
+        channel_table[i] = channel["id"]
+      end
     end
   end
   return(channel_table)
