@@ -14,8 +14,13 @@ Some key features of neoslime is:
 
 # Installation
 
-- Only tested with [lazy.nvim plugin manager](https://www.lazyvim.org)
+- Only tested with [lazy.nvim plugin manager](https://github.com/folke/lazy.nvim)
 
+```
+{
+  mackris/neoslime
+}
+```
 
 # Usage
 
