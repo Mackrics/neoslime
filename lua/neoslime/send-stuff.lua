@@ -1,3 +1,5 @@
+local config = require('neoslime.config')
+
 function edit_channel_and_send(code)
   local all_channels = get_channels()
   if all_channels[1] == nil then
@@ -67,17 +69,17 @@ function get_bound(delim, find_upper)
     end
 end
 
-function get_cell_content()
+function get_cell_content(delim)
   -- get current line
   -- check if line above is empty 
-  upper = get_bound("```", true)
-  lower = get_bound("```", false)
+  upper = get_bound(delim, true)
+  lower = get_bound(delim, false)
   content_tab = vim.api.nvim_buf_get_lines(0, upper, lower, true)
   return(content_tab)
 end
 
 function send_cell_content()
-  content_tab = get_cell_content()
+  content_tab = get_cell_content(config.cell_delim)
   for _, row in ipairs(content_tab) do
     send_content(row.."\n")
   end
