@@ -49,5 +49,5 @@ The default keybindings are currently:
 
 - `ctrl + h` send current line when in interactive mode
 - `ctrl + h` send visual selection when in visual mode
-- `leader + s` send cell content, current delimitors are ```
+- `leader + s` send cell content, with delimitor set in config
 - `leader + e` edit channel
