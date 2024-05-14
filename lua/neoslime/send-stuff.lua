@@ -36,6 +36,48 @@ function send_line()
   send_content(line)
 end
 
+-- get current line number
+function get_row_num() 
+  local r,c = unpack(vim.api.nvim_win_get_cursor(0))
+  return(r)
+end
+
+function get_bound(delim, find_upper) 
+  if find_upper then
+    const = 1
+  else 
+    const = - 1
+  end
+  bound = false
+  row = get_row_num()
+  temp = row
+  while (temp > 0 and not bound) do -- get upper bound
+    if find_upper then
+      text = unpack(vim.api.nvim_buf_get_lines(0, temp - const, temp, true))
+    else
+      text = unpack(vim.api.nvim_buf_get_lines(0, temp, temp - const, true))
+    end
+    bound = string.find(text, delim) == 1
+    temp = temp - const
+  end
+    if find_upper then
+      return(temp + const)
+    else
+      return(temp + const)
+    end
+end
+
+function get_cell_text()
+  -- get current line
+  -- check if line above is empty 
+  upper = get_bound("```", true)
+  lower = get_bound("```", false)
+  text_tab = vim.api.nvim_buf_get_lines(0, upper, lower, true)
+  for _, text in ipairs(text_tab) do
+    print(text)
+  end
+end
+
 -- Send visual selection
 function send_visual_selection()
   local content = get_visual_selection()
