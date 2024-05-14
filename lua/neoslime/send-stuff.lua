@@ -67,19 +67,25 @@ function get_bound(delim, find_upper)
     end
 end
 
-function get_cell_text()
+function get_cell_content()
   -- get current line
   -- check if line above is empty 
   upper = get_bound("```", true)
   lower = get_bound("```", false)
-  text_tab = vim.api.nvim_buf_get_lines(0, upper, lower, true)
-  for _, text in ipairs(text_tab) do
-    print(text)
+  content_tab = vim.api.nvim_buf_get_lines(0, upper, lower, true)
+  return(content_tab)
+end
+
+function send_cell_content()
+  content_tab = get_cell_content()
+  for _, row in ipairs(content_tab) do
+    send_content(row.."\n")
   end
 end
 
 -- Send visual selection
 function send_visual_selection()
   local content = get_visual_selection()
+  print(content)
   send_content(code)
 end
