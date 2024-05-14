@@ -21,6 +21,12 @@ vim.api.nvim_create_user_command(
 )
 
 vim.api.nvim_create_user_command(
+  'NeoSlimeSendCell', 
+  'lua send_cell_content()',
+  {}
+)
+
+vim.api.nvim_create_user_command(
   'NeoSlimeSendVisualSelection', 
   'lua send_visual_selection()',
   {range = true}
