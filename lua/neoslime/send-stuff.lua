@@ -85,9 +85,9 @@ function send_cell_content()
   end
 end
 
+
 -- Send visual selection
 function send_visual_selection()
   local content = get_visual_selection()
-  print(content)
   send_content(code)
 end
