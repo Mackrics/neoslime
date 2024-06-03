@@ -69,17 +69,39 @@ function get_bound(delim, find_upper)
     end
 end
 
-function get_cell_content(delim)
+function get_cell_content(delim, use_current_lower, use_current_upper)
   -- get current line
   -- check if line above is empty 
-  upper = get_bound(delim, true)
-  lower = get_bound(delim, false)
+  if (use_current_upper) then
+    upper = get_row_num()
+  else
+    upper = get_bound(delim, true)
+  end
+  if (use_current_lower) then
+    lower = get_row_num()
+  else
+    lower = get_bound(delim, false)
+  end
   content_tab = vim.api.nvim_buf_get_lines(0, upper, lower, true)
   return(content_tab)
 end
 
 function send_cell_content()
-  content_tab = get_cell_content(config.cell_delim)
+  content_tab = get_cell_content(config.cell_delim, false, false)
+  for _, row in ipairs(content_tab) do
+    send_content(row.."\n")
+  end
+end
+
+function send_cell_lower()
+  content_tab = get_cell_content(config.cell_delim, true, false)
+  for _, row in ipairs(content_tab) do
+    send_content(row.."\n")
+  end
+end
+
+function send_cell_upper()
+  content_tab = get_cell_content(config.cell_delim, false, true)
   for _, row in ipairs(content_tab) do
     send_content(row.."\n")
   end
