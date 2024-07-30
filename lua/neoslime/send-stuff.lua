@@ -88,6 +88,10 @@ end
 
 function send_cell_content()
   content_tab = get_cell_content(config.cell_delim, false, false)
+  if get_chosen_channel() == nil then
+    error("Must choose channel before sending cell content")
+    return(nil)
+  end
   for _, row in ipairs(content_tab) do
     send_content(row.."\n")
   end
